@@ -1,0 +1,59 @@
+    <!--main content start-->
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Обратная связь</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <h4 class="title" id="status"> Заполните форму</h4>
+            <div id="message"></div>
+            <form onsubmit="sendForm(this); return false;" class="contact-form php-mail-form" role="form">
+              <div class="form-group">
+                <input type="name" name="name" required class="form-control" id="contact-name" placeholder="Ваше Имя" data-rule="minlen:4" data-msg="Укажите имя" >
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" required class="form-control" id="contact-email" placeholder="Ваш Email" data-rule="email" data-msg="Введите контакт">
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Тема" data-rule="minlen:4" data-msg="Укажите тему письма">
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" id="contact-message" placeholder="Сообщение" rows="5" data-rule="required" data-msg="Напишите свое сообщение"></textarea>
+                <div class="validate"></div>
+              </div>
+                <button type="submit" class="btn btn-large btn-theme">Отправить сообщение</button>
+            </form>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <h4 class="title">Контактная информация</h4>
+            <p>Наша компания является ведущей в области виртуального инвестирования.</p>
+            <ul class="contact_details">
+              <li><i class="fa fa-envelope-o"></i> info@webbroker.com</li>
+              <li><i class="fa fa-phone-square"></i> +7 (495) 308-03-91 круглосуточная поддержка</li>
+              <li><i class="fa fa-home"></i> Москва, 125047, ул.Тверская д 27, Россия</li>
+            </ul>
+            <!-- contact_details -->
+          </div>
+        </div>
+      </section>
+      <script>
+        const status = document.getElementById('status');
+        function sendForm(form){
+          const formData = new FormData(form);
+          fetch("/sendMessage",{
+            method: "POST",
+            body: formData
+          }).then(response=>response.text())
+            .then(result=>{
+              if(result==="posted"){
+                status.innerHTML = 
+                  `<h4>Ваше сообщение отправлено. Спасибо.</h4>`;
+                setTimeout(()=>location.href="/trading",2000);
+              }
+            });
+          //console.log("Отправка формы");
+        }
+      </script>

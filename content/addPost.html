@@ -1,0 +1,38 @@
+
+<section class="wrapper site-min-height">
+<div class="container my-5">
+  <h3><i class="fa fa-angle-right"></i> Добавить свою идею</h3>
+  <div  class="row content-panel">
+  <div class="col-md-9">
+    <form onsubmit="addPost(this); return false;">
+      <div class="form-group">
+        <input name="title" type="text" class="form-control" placeholder="Заголовок">
+      </div>
+      <div class="form-group">
+        <textarea name="content" class="form-control" placeholder="Контент"></textarea>
+      </div>
+      <div class="form-group">
+        <input name="author" type="text" class="form-control" placeholder="Автор">
+      </div>
+      <div class="form-group">
+        <input type="submit" class="form-control btn btn-large btn-theme" value="Добавить идею">
+      </div>
+    </form>
+  </div>
+</div>  
+</div>
+</section>
+<script>
+  function addPost(form){
+    const formData = new FormData(form);
+    fetch("/addPost",{
+      method: "POST",
+      body: formData
+    }).then(response=>response.text())
+      .then(result=>{
+        if(result==='success'){
+          location.href='/idea-list';
+        }
+      });
+  }
+</script>

@@ -1,0 +1,37 @@
+<section class="wrapper site-min-height">
+  <h3><i class="fa fa-angle-right"></i> Посмотри что пришут другие пользователи</h3>
+    <div class="row content-panel mt mb">
+      <div class="col-md-6">
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="container" id="postList"></div>
+      </div>
+    </div>  
+</section>
+
+<script>
+  let posts = '';
+  fetch('/getPostList')
+    .then(response=>response.json())
+    .then(result=>{
+      result.forEach(post=>{
+      const parser = new DOMParser();
+      const subtitle = parser.parseFromString(post.content, "text/html");
+        posts += `
+            <div class="col-md-12">
+              <div class="col-md-10">
+              <h3 contenteditable="false">${post.title}</h3>
+              <span>${post.add_date_blog}</span>
+              <blockquote contenteditable="false" class="mt">${post.content}</blockquote>
+              <h4 contenteditable="false">Автор: ${post.author}</h4>
+            </div>
+            `;
+            postList.innerHTML = posts;
+            })
+          });
+</script>
+        
+
+          
+
+        
+        
