@@ -29,7 +29,7 @@
       $email = $_POST['email'];
       $name = $_POST['name'];
       $msg = $_POST['msg'];
-      mail('lebeshov@gmail.com','Письмо с сайта 400',"E-mail: $email\nИмя: $name\nСообщение: $msg");
+      mail('tilda_flex@mail.ru','Письмо с сайта brokerem',"E-mail: $email\nИмя: $name\nСообщение: $msg");
       return json_encode(['result'=>'success']);
     }
   ];
@@ -83,29 +83,19 @@
     $title = "Информация";
     $content = file_get_contents('content/info.php');
     require_once('templates/maintemplate.php');   
-  }else if($uri[1]=='crypto'){
-    $title = "Криптовалюта";
-    $content = file_get_contents('content/crypto.html');
-    require_once('templates/maintemplate.php'); 
-  }else if($uri[1]=='fund'){
-    $title = "Фундаментальный анализ";
-    $content = file_get_contents('content/fund.html');
-    require_once('templates/maintemplate.php');   
-  }else if($uri[1]=='tech'){
-    $title = "Технический анализ";
-    $content = file_get_contents('content/tech.html');
-    require_once('templates/maintemplate.php');
-  }else if($uri[1]=='forex'){
-    $title = "Форекс";
-    $content = file_get_contents('content/forex.html');
-    require_once('templates/maintemplate.php');
   }else if($uri[1]=='trading'){
     $title = "Торговый терминал";
     $content = file_get_contents('content/trading.php');
-    require_once('templates/maintemplate_for_trading.php');
+    require_once('templates/maintemplate.php');
   }else if($uri[1]=='history'){
     $title = "История";
     $content = file_get_contents('content/history.html');
     require_once('templates/maintemplate.php');
+  }  else {
+    $title = "404";
+    $content = file_get_contents('content/404.html');
+    require_once('templates/maintemplate.php');
   }
+
+
 ?>
