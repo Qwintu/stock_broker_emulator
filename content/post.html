@@ -1,0 +1,32 @@
+<section class="wrapper site-min-height">
+  <h3><i class="fa fa-angle-right"></i> Просмотр публикации</h3>
+  <div class="row content-panel mt mb">
+    
+    <div  class="row content-panel">
+      <div class="col-md-6">
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="container" id="form"></div>
+      </div>
+          
+        
+       
+      </div> 
+    </div>
+</section>
+<script>
+  const id = location.pathname.split("/")[2];
+  const formData = new FormData();
+  const form = document.getElementById("form");
+  let content = "";
+  formData.append('id',id);
+  fetch('/getPostById',{
+    method: "POST",
+    body: formData
+  }).then(response=>response.json())
+    .then(result=>{
+      console.log(result);
+      content += result.content;
+      content += `<p class="my-5">Автор: ${result.author} || ${result.add_date_blog}</p>`;
+      form.innerHTML = content;
+    })
+</script>
