@@ -359,7 +359,7 @@
                 a = Number(but_sell.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText);
                 let n = dig_after_point(a);
                 n = check_n(n);
-                but_sell.innerText = Math.round((a*1.005) * (Math.pow(10, n))) / (Math.pow(10, n));
+                but_sell.innerText = Math.round((a*0.995) * (Math.pow(10, n))) / (Math.pow(10, n));
             };
 
             for(let i=0; i<btns_buy.length; i++){
