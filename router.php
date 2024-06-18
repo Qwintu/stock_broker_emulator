@@ -39,7 +39,8 @@
     }
   }  
   
-  if($uri[1]=='' and empty($_SESSION['id'])){
+    // if($uri[1]=='' and empty($_SESSION['id'])){
+    if($uri[1]!='login' and empty($_SESSION['id'])){
     $title = "Главная";
     $h1 = "Проект";
     header('Location: /login');
