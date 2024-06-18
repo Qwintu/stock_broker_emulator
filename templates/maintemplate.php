@@ -38,13 +38,15 @@
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
-      <!--logo start-->
-      <a href="/lk" class="logo"><b>В<span>Брокер</span></b></a>
-      <!--logo end-->
       
-        <!--  notification start -->
- 
-        <!--  notification end -->
+      <!--logo start-->
+      <?if($_SESSION['id']):?>
+        <a href="/trading" class="logo"><b>В<span>Брокер</span></b></a>
+      <? else: ?>
+        <a href="/" class="logo"><b>В<span>Брокер</span></b></a>
+      <?endif;?> 
+      <!--logo end-->
+
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
